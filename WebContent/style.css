@@ -1,0 +1,19 @@
+body {
+     font-family: "Calibri";
+     font-size:18px;
+}
+
+#div_login{
+	text-align: right;
+	/* background-color: red; */
+}
+
+#div_menu{
+ 	text-align: center;
+	/* background-color: blue; */
+}
+
+#div_grafico{
+	text-align: center;
+	/* background-color: green; */
+}

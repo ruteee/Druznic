@@ -1,0 +1,324 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</h:head>
+
+<h:body>
+	<div id="div_login">
+
+		<h:form>
+			<p:commandLink id="Login">
+				<h:outputText value="192.168.30.30" />
+			</p:commandLink>
+
+			<p:overlayPanel id="Login_Panel" for="Login" hideEffect="fade">
+				<h:outputText value="IP: " />
+				<p:inputText id="IP_text" />
+				<br />
+
+				<h:outputText value="Porta: " />
+				<p:inputText id="Porta_text" />
+				<br />
+
+				<h:outputText value="Leitura 1: " />
+				<p:inputText id="Leitura1_text" />
+				<br />
+
+				<h:outputText value="Leitura 2: " />
+				<p:inputText id="Leitura2_text" />
+				<br />
+
+				<h:outputText value="Escrita: " />
+				<p:inputText id="Escrita_text" />
+				<br />
+
+				<p:commandButton value="OK" />
+
+
+			</p:overlayPanel>
+		</h:form>
+	</div>
+	<div id="div_menu">
+		<p:commandButton value="Malha aberta" id="Malha_aberta" />
+		<p:overlayPanel id="Panel_Malha_aberta" for="Malha_aberta"
+			hideEffect="fade">
+			<h:outputLabel value="Tipo de Onda: " />
+			<p:selectOneMenu id="tipo_de_onda_malha_aberta" style="width:150px">
+				<f:selectItem itemLabel="Selecione" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItem itemLabel="Degrau" itemValue="0"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Quadrada" itemValue="1"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Senoidal" itemValue="2"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Dente de Serra" itemValue="3"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Aleatoria" itemValue="4"
+					noSelectionOption="false" />
+			</p:selectOneMenu>
+			<br />
+
+			<h:outputLabel value="Amplitude: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Amplitude mínima: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período mínimo: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Offset: " />
+			<p:inputText />
+			<br />
+			<p:commandButton value="OK" id="btn_malha_aberta" />
+		</p:overlayPanel>
+
+		<p:commandButton value="Malha fechada" id="Malha_fechada" />
+		<p:overlayPanel id="Panel_Malha_fechada" for="Malha_fechada"
+			hideEffect="fade">
+			<h:outputLabel value="Tipo de Onda: " />
+			<p:selectOneMenu id="tipo_de_onda_malha_fechada" style="width:150px">
+				<f:selectItem itemLabel="Selecione" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItem itemLabel="Degrau" itemValue="0"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Quadrada" itemValue="1"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Senoidal" itemValue="2"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Dente de Serra" itemValue="3"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Aleatoria" itemValue="4"
+					noSelectionOption="false" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<h:outputLabel value="Amplitude: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Amplitude mínima: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período mínimo: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Offset: " />
+			<p:inputText />
+
+			<br />
+			<p:commandButton value="OK" id="btn_malha_fechada" />
+		</p:overlayPanel>
+
+		<p:commandButton value="PID" id="PID" />
+		<p:overlayPanel id="Panel_PID" for="PID" hideEffect="fade">
+			<h:outputLabel value="Tipo de Onda: " />
+			<p:selectOneMenu id="tipo_de_onda_pid" style="width:150px">
+				<f:selectItem itemLabel="Selecione" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItem itemLabel="Degrau" itemValue="0"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Quadrada" itemValue="1"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Senoidal" itemValue="2"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Dente de Serra" itemValue="3"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Aleatoria" itemValue="4"
+					noSelectionOption="false" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<h:outputLabel value="Amplitude: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Amplitude mínima: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período mínimo: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Offset: " />
+			<p:inputText />
+			<br />
+
+			<p:commandButton value="OK" id="btn_PID" />
+		</p:overlayPanel>
+
+		<p:commandButton value="PID em Cascata" id="PID_Cascata" />
+		<p:overlayPanel id="Panel_PID_Cascata" for="PID_Cascata"
+			hideEffect="fade">
+			<h:outputLabel value="Tipo de Onda: " />
+			<p:selectOneMenu id="tipo_de_onda_pid_cascata" style="width:150px">
+				<f:selectItem itemLabel="Selecione" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItem itemLabel="Degrau" itemValue="0"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Quadrada" itemValue="1"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Senoidal" itemValue="2"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Dente de Serra" itemValue="3"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Aleatoria" itemValue="4"
+					noSelectionOption="false" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<h:outputLabel value="Amplitude: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Amplitude mínima: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período mínimo: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Offset: " />
+			<p:inputText />
+			<br />
+
+			<p:commandButton value="OK" id="btn_PID_cascata" />
+		</p:overlayPanel>
+
+		<p:commandButton value="Observador de estados" id="Observador" />
+		<p:overlayPanel id="Panel_Observador" for="Observador"
+			hideEffect="fade">
+			<h:outputLabel value="Tipo de Onda: " />
+			<p:selectOneMenu id="tipo_de_onda_observador" style="width:150px">
+				<f:selectItem itemLabel="Selecione" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItem itemLabel="Degrau" itemValue="0"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Quadrada" itemValue="1"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Senoidal" itemValue="2"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Dente de Serra" itemValue="3"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Aleatoria" itemValue="4"
+					noSelectionOption="false" />
+			</p:selectOneMenu>
+			<br />
+
+			<h:outputLabel value="Amplitude: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Amplitude mínima: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período mínimo: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Offset: " />
+			<p:inputText />
+			<br />
+
+			<p:commandButton value="OK" id="btn_observador" />
+		</p:overlayPanel>
+
+		<p:commandButton value="Seguidor de Referência" id="Seguidor" />
+		<p:overlayPanel id="Panel_Seguidor" for="Seguidor" hideEffect="fade">
+			<h:outputLabel value="Tipo de Onda: " />
+			<p:selectOneMenu id="tipo_de_onda_seguidor" style="width:150px">
+				<f:selectItem itemLabel="Selecione" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItem itemLabel="Degrau" itemValue="0"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Quadrada" itemValue="1"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Senoidal" itemValue="2"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Dente de Serra" itemValue="3"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="Aleatoria" itemValue="4"
+					noSelectionOption="false" />
+			</p:selectOneMenu>
+
+			<br />
+
+			<h:outputLabel value="Amplitude: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Amplitude mínima: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Período mínimo: " />
+			<p:inputText />
+			<br />
+
+			<h:outputLabel value="Offset: " />
+			<p:inputText />
+			<br />
+
+			<p:commandButton value="OK" id="btn_seguidor" />
+		</p:overlayPanel>
+	</div>
+
+
+	<div id="div_grafico">
+		<h:form>
+			<p:chart type="line" model="#{chartView.lineModel1}"
+				style="height:300px;" />
+			<h:outputLabel value="MP: " />
+			<h:outputLabel value="TR: " />
+			<h:outputLabel value="TS: " />
+			<h:outputLabel value="TP: " />
+			<p:chart type="line" model="#{chartView.lineModel2}"
+				style="height:300px;" />
+
+		</h:form>
+	</div>
+</h:body>
+</html>
