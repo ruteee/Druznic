@@ -5,16 +5,21 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StreamCorruptedException;
 import java.net.Socket;
+import java.util.Map;
+
+import org.primefaces.model.chart.LineChartSeries;
 
 public class Receptor extends Thread {
 	private Socket sock = null;
 	private boolean esperando = true;
+	private Map<Integer, LineChartSeries> filas;
 
 	private boolean flag = false;
 	
-	public Receptor(Socket sock) {
+	public Receptor(Socket sock, Map<Integer, LineChartSeries> filas) {
 		this.sock = sock;
 		this.setName("ThreadRecepção");
+		this.filas = filas;
 	}
 
 	@Override
@@ -36,6 +41,10 @@ public class Receptor extends Thread {
 				System.out.println("XML: " + xml + "\n\n");
 				this.flag = true;
 				// Hand off to the UI
+				String lista[] = xml.split("\t");
+				for (int i = 1; i < lista.length / 2; i++) {
+					filas.get(Integer.parseInt(lista[2 * i])).set(Double.parseDouble(lista[1]), Double.parseDouble(lista[(2*i) + 1]));
+				}
 				/*
 				 * if ( xml.indexOf("HostnameResponse") != -1 )
 				 * viewer.onHostnameResponse(xml); else if (
