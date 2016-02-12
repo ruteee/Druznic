@@ -8,6 +8,17 @@ body {
 	/* background-color: red; */
 }
 
+#div_labels_login{
+	text-align:justify;
+	 line-height: 1.6;
+	 text-color:"black"
+}
+#div_input_login{
+	text-align:justify;
+	margin-top:-100px;
+	margin-left:100px;
+}
+
 #div_menu{
  	text-align: center;
 	/* background-color: blue; */
@@ -17,3 +28,108 @@ body {
 	text-align: center;
 	/* background-color: green; */
 }
+
+#div_labels_aberta{
+	text-align:justify;
+	 line-height: 1.6;
+	 text-color:"black"
+}
+#div_inputs_aberta{
+	text-align:justify;
+	margin-top:-193px;
+	margin-left:190px;
+}
+#div_ok_aberta{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+	margin-top:5px;
+	margin-left:75px;
+}
+
+#div_labels_fechada{
+	text-align:justify;
+	 line-height: 1.6;
+	 text-color:"black"
+}
+#div_inputs_fechada{
+	text-align:justify;
+	margin-top:-193px;
+	margin-left:190px;
+}
+#div_ok_fechada{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+	margin-top:5px;
+	margin-left:75px;
+}
+
+#div_labels_PID{
+	text-align:justify;
+	 line-height: 1.6;
+	 text-color:"black"
+}
+#div_inputs_PID{
+	text-align:justify;
+	margin-top:-193px;
+	margin-left:190px;
+}
+#div_ok_PID{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+	margin-top:5px;
+	margin-left:75px;
+}
+
+#div_labels_PID_Cascata{
+	text-align:justify;
+	 line-height: 1.6;
+	 text-color:"black"
+}
+#div_inputs_PID_Cascata{
+	text-align:justify;
+	margin-top:-193px;
+	margin-left:190px;	
+}
+#div_ok_PID_Cascata{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+	margin-top:5px;
+	margin-left:75px;
+}
+
+#div_labels_Observador{
+	text-align:justify;
+	 line-height: 1.6;
+	 text-color:"black"
+}
+#div_inputs_Observador{
+	text-align:justify;
+	margin-top:-193px;
+	margin-left:190px;
+}
+#div_ok_Observador{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+	margin-top:5px;
+	margin-left:75px;
+}
+
+#div_labels_Seguidor{
+	text-align:justify;
+	 line-height: 1.6;
+	 text-color:"black"
+}
+#div_inputs_Seguidor{
+	text-align:justify;
+	margin-top:-193px;
+	margin-left:190px;	
+}
+#div_ok_Seguidor{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+	margin-top:5px;
+	margin-left:75px;
+}
+
+
+
