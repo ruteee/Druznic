@@ -26,8 +26,12 @@ public class Druznic{
 	private Map<Integer, LineChartSeries> filas = new HashMap<Integer, LineChartSeries>();
 	private Comunicador comunicador;
 	
-	public ChartSeries nivel_um; 
+	public ChartSeries nivel_um, nivel_dois, T_ONDA, T_SAT; 
 	public ChartSeries vp;
+	
+	public Druznic (){
+		comunicador = new Comunicador("10.10.10.10", filas);
+	}
 
 	public LineChartModel getGraficoNivel(){
 		return graficoNivel;
@@ -45,28 +49,39 @@ public class Druznic{
 	public LineChartModel gerarGraficoNivel(){
 			
 			graficoNivel = new LineChartModel();
+			
 			nivel_um = new LineChartSeries();
-			nivel_um.set("1", 2);
-			nivel_um.set("4", 4);
-			nivel_um.set("3", 8);
-			nivel_um.set("5", 10);
+			nivel_um = filas.get("NIVEL_UM");
+			
+			nivel_dois = new LineChartSeries();
+			nivel_dois = filas.get("NIVEL_DOIS");
 			
 			graficoNivel.addSeries(nivel_um);
+			graficoNivel.addSeries(nivel_dois);
+			
 			
 			return graficoNivel;
 			
 	}
 	
+	public void limparGrafico(){
+		graficoNivel.clear();
+		graficoControle.clear();
+	}
+	
 	public LineChartModel gerarGraficoControle(){
 		
 		graficoControle = new LineChartModel();
-		vp = new LineChartSeries();
-		vp.set("1", -2);
-		vp.set("5", -4);
-		vp.set("13", -8);
-		vp.set("17", -10);
 		
-		graficoControle.addSeries(vp);
+		T_ONDA = new LineChartSeries();
+		T_ONDA = filas.get("T_ONDA");
+		
+		T_SAT = new LineChartSeries();
+		T_SAT = filas.get("T_SAT");
+		
+		graficoControle.addSeries(T_ONDA);
+		graficoControle.addSeries(T_SAT);
+		
 		
 		return graficoControle;
 		
