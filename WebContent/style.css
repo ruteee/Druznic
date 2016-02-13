@@ -31,12 +31,12 @@ body {
 
 #div_labels_aberta{
 	text-align:justify;
-	 line-height: 1.6;
+	 line-height: 1.9;
 	 text-color:"black"
 }
 #div_inputs_aberta{
 	text-align:justify;
-	margin-top:-193px;
+	margin-top:-176px;
 	margin-left:190px;
 }
 #div_ok_aberta{
@@ -48,12 +48,12 @@ body {
 
 #div_labels_fechada{
 	text-align:justify;
-	 line-height: 1.6;
+	 line-height: 1.9;
 	 text-color:"black"
 }
 #div_inputs_fechada{
 	text-align:justify;
-	margin-top:-193px;
+	margin-top:-176px;
 	margin-left:190px;
 }
 #div_ok_fechada{
@@ -65,12 +65,12 @@ body {
 
 #div_labels_PID{
 	text-align:justify;
-	 line-height: 1.6;
+	 line-height: 1.9;
 	 text-color:"black"
 }
 #div_inputs_PID{
 	text-align:justify;
-	margin-top:-193px;
+	margin-top:-176px;
 	margin-left:190px;
 }
 #div_ok_PID{
@@ -82,12 +82,12 @@ body {
 
 #div_labels_PID_Cascata{
 	text-align:justify;
-	 line-height: 1.6;
+	 line-height: 1.9;
 	 text-color:"black"
 }
 #div_inputs_PID_Cascata{
 	text-align:justify;
-	margin-top:-193px;
+	margin-top:-176px;
 	margin-left:190px;	
 }
 #div_ok_PID_Cascata{
@@ -99,12 +99,12 @@ body {
 
 #div_labels_Observador{
 	text-align:justify;
-	 line-height: 1.6;
+	 line-height: 1.9;
 	 text-color:"black"
 }
 #div_inputs_Observador{
 	text-align:justify;
-	margin-top:-193px;
+	margin-top:-176px;
 	margin-left:190px;
 }
 #div_ok_Observador{
@@ -116,12 +116,12 @@ body {
 
 #div_labels_Seguidor{
 	text-align:justify;
-	 line-height: 1.6;
+	 line-height: 1.9;
 	 text-color:"black"
 }
 #div_inputs_Seguidor{
 	text-align:justify;
-	margin-top:-193px;
+	margin-top:-176px;
 	margin-left:190px;	
 }
 #div_ok_Seguidor{

@@ -8,6 +8,7 @@
 
 <h:head>
 	<link rel="stylesheet" type="text/css" href="style.css" />
+	<title>Druznic</title>
 </h:head>
 
 <h:body>
@@ -353,13 +354,13 @@
 
 	<div id="div_grafico">
 		<h:form>
-			<p:chart type="line" model="#{chartView.lineModel1}"
+			<p:chart type="line" model="#{druznic.graficoControle}"
 				style="height:300px;" />
 			<h:outputLabel value="MP: " />
 			<h:outputLabel value="TR: " />
 			<h:outputLabel value="TS: " />
 			<h:outputLabel value="TP: " />
-			<p:chart type="line" model="#{chartView.lineModel2}"
+			<p:chart type="line" model="#{druznic.graficoNivel}"
 				style="height:300px;" />
 
 		</h:form>
