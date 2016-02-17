@@ -29,36 +29,35 @@ public class Receptor extends Thread {
 		try {
 			instream = this.sock.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(instream));
-
+			
 			while (this.esperando) {
 				System.out.println("Esperando na thread");
+				instream.skip(instream.available());
 				String xml = reader.readLine();
 				if (xml == null) {
 					// Connection lost
+					System.out.println("Conexão perdida");
 					return;
 				}
-
-				System.out.println("XML: " + xml + "\n\n");
+				System.out.println("XML:" + xml);
+				
 				this.flag = true;
-				// Hand off to the UI
-				String lista[] = xml.split("\t");
-				for (int i = 1; i < lista.length / 2; i++) {
+				
+				String lista[] = xml.split("[|]");
+				for (String string : lista) {
+					System.out.println(string);
+				}
+				for (int i = 1; i < lista.length/2; i++) {
 					filas.get(Integer.parseInt(lista[2 * i])).set(Double.parseDouble(lista[1]), Double.parseDouble(lista[(2*i) + 1]));
 				}
-				/*
-				 * if ( xml.indexOf("HostnameResponse") != -1 )
-				 * viewer.onHostnameResponse(xml); else if (
-				 * xml.indexOf("MemoryResponse") != -1 )
-				 * viewer.onMemoryResponse(xml); else if (
-				 * xml.indexOf("RandomNumberResponse") != -1 )
-				 * viewer.onRandomNumberResponse(xml);
-				 */
+				
 			}
 		} catch (StreamCorruptedException sce) {
 			// skip over the bad bytes
 			try {
 				if (instream != null)
 					instream.skip(instream.available());
+				System.out.println("ex");
 			} catch (Exception e1) {
 				this.esperando = false;
 			}

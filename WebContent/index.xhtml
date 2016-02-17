@@ -8,7 +8,7 @@
 
 <h:head>
 	<link rel="stylesheet" type="text/css" href="style.css" />
-	<title></title>
+	<title>Druznic</title>
 </h:head>
 
 <h:body>
@@ -16,7 +16,7 @@
 
 		<h:form>
 			<p:commandLink id="Login">
-				<h:outputText value="192.168.30.30" />
+				<h:outputText value="10.13.99.69" />
 			</p:commandLink>
 
 			<p:overlayPanel id="Login_Panel" for="Login" hideEffect="fade">
@@ -34,22 +34,26 @@
 
 				<div id="div_input_login">
 
-					<p:inputText id="IP_text" style="width: 50; margin-bottom:3px" />
-					<br />
-					<p:inputText id="Porta_text" style="width: 50; margin-bottom:3px" />
-					<br />
-					<p:inputText id="Leitura1_text"
+					<p:inputText id="IP_text" value="#{druznic.ip}"
 						style="width: 50; margin-bottom:3px" />
 					<br />
-					<p:inputText id="Leitura2_text"
+					<p:inputText id="Porta_text" value="#{druznic.porta}"
 						style="width: 50; margin-bottom:3px" />
 					<br />
-					<p:inputText id="Escrita_text" style="width: 50; margin-bottom:3px" />
+					<p:inputText id="Leitura1_text" value="#{druznic.leituraUm}"
+						style="width: 50; margin-bottom:3px" />
+					<br />
+					<p:inputText id="Leitura2_text" value="#{druznic.leituraDois}"
+						style="width: 50; margin-bottom:3px" />
+					<br />
+					<p:inputText id="Escrita_text" value="#{druznic.escrita}"
+						style="width: 50; margin-bottom:3px" />
 					<br />
 				</div>
 
 				<div id="ok_login">
-					<p:commandButton value="OK" style="width:130px" />
+					<p:commandButton value="OK" style="width:1_u30px"
+						action="#{druznic.conectar}" />
 				</div>
 
 			</p:overlayPanel>
@@ -75,30 +79,21 @@
 				<h:outputLabel value="Offset: " />
 			</div>
 			<div id="div_inputs_aberta">
-				<p:selectOneMenu id="tipo_de_onda_malha_aberta" style="width:130px">
+				<p:selectOneMenu id="tipo_de_onda_malha_aberta" value="#{druznic.onda}" style="width:130px">
 					<f:selectItem itemLabel="Selecione" itemValue=""
 						noSelectionOption="false" />
-					<f:selectItem itemLabel="Degrau" itemValue="0"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="Quadrada" itemValue="1"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="Senoidal" itemValue="2"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="Dente de Serra" itemValue="3"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="Aleatoria" itemValue="4"
-						noSelectionOption="false" />
+					<f:selectItems value="#{druznic.ondas}"/>
 				</p:selectOneMenu>
 				<br />
-				<p:inputText style="width:60px" />
+				<p:inputText style="width:60px" value="#{druznic.amp}" />
 				<br />
-				<p:inputText style="width:60px" />
+				<p:inputText style="width:60px" value="#{druznic.amp_inf}"/>
 				<br />
-				<p:inputText style="width:60px" />
+				<p:inputText style="width:60px" value="#{druznic.periodo}"/>
 				<br />
-				<p:inputText style="width:60px" />
+				<p:inputText style="width:60px" value="#{druznic.periodo_inf}"/>
 				<br />
-				<p:inputText style="width:60px" />
+				<p:inputText style="width:60px" value="#{druznic.offset}"/>
 				<br />
 
 			</div>
@@ -132,16 +127,7 @@
 				<p:selectOneMenu id="tipo_de_onda_malha_fechada" style="width:130px">
 					<f:selectItem itemLabel="Selecione" itemValue=""
 						noSelectionOption="false" />
-					<f:selectItem itemLabel="Degrau" itemValue="0"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="Quadrada" itemValue="1"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="Senoidal" itemValue="2"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="Dente de Serra" itemValue="3"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="Aleatoria" itemValue="4"
-						noSelectionOption="false" />
+					<f:selectItems value="#{druznic.ondas}"/>
 				</p:selectOneMenu>
 				<br />
 				<p:inputText style="width:60px" />
@@ -158,7 +144,7 @@
 			</div>
 			<div id="div_ok_fechada">
 				<p:commandButton value="OK" id="btn_malha_fechada"
-					style="width:130px" />
+					style="width:130px" actionListener="#{druznic.configMalhaFechada}"/>
 			</div>
 		</p:overlayPanel>
 
@@ -361,18 +347,19 @@
 
 	<div id="div_grafico">
 
-		<b:poll interval="100" update="form_graficos" />
+		<h:form>
+			<p:poll interval="1" update="form_graficos" />
+		</h:form>
 
 		<h:form id="form_graficos">
 			<p:chart type="line" model="#{druznic.graficoControle}"
-				style="height:300px;" />
+				style="height:300px;" responsive="true" />
 			<h:outputLabel value="MP: " />
 			<h:outputLabel value="TR: " />
 			<h:outputLabel value="TS: " />
 			<h:outputLabel value="TP: " />
-			<!-- <h:outputLabel value="#{druznic.horario}" /> -->
 			<p:chart type="line" model="#{druznic.graficoNivel}"
-				style="height:300px;" />
+				style="height:300px;" responsive="true" />
 
 		</h:form>
 	</div>
