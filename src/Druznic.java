@@ -190,8 +190,8 @@ public class Druznic {
 		criarLineModels();
 		ondas = new HashMap<String, String>();
 		ondas.put("Degrau", "0");
-		ondas.put("Quadrada", "1");
-		ondas.put("Senoidal", "2");
+		ondas.put("Quadrada", "2");
+		ondas.put("Senoidal", "1");
 		ondas.put("Dente de Serra", "3");
 		ondas.put("Aleatória", "4");
 	}
@@ -208,7 +208,7 @@ public class Druznic {
 		Axis yAxis = graficoNivel.getAxis(AxisType.Y);
 		Axis xAxis = graficoNivel.getAxis(AxisType.X);
 		xAxis.setMin(0);
-		xAxis.setMax(240);
+		xAxis.setMax(120);
 		yAxis.setMin(0);
 		yAxis.setMax(30);
 
@@ -217,7 +217,9 @@ public class Druznic {
 		graficoControle.setLegendPosition("e");
 		xAxis = graficoControle.getAxis(AxisType.X);
 		xAxis.setMin(0);
-		xAxis.setMax(240);
+		xAxis.setMax(120);
+		yAxis = graficoControle.getAxis(AxisType.Y);
+		//yAxis.setMin(0);
 	}
 
 	public void conectar(){
@@ -308,8 +310,8 @@ public class Druznic {
 
 		graficoNivel.addSeries(filas.get(NIVEL_UM));
 		graficoNivel.addSeries(filas.get(NIVEL_DOIS));
-
-		graficoControle.addSeries(filas.get(REF));
+		graficoNivel.addSeries(filas.get(REF));
+		
 		graficoControle.addSeries(filas.get(ERRO));
 		graficoControle.addSeries(filas.get(ERRO_SAT));
 		

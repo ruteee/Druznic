@@ -12,8 +12,8 @@
 </h:head>
 
 <h:body>
-	<div id="div_login">
 
+	<div id="div_login">
 		<h:form>
 			<p:commandLink id="Login">
 				<h:outputText value="10.13.99.69" />
@@ -59,6 +59,7 @@
 			</p:overlayPanel>
 		</h:form>
 	</div>
+
 	<div id="div_menu">
 
 		<p:commandButton value="Malha aberta" id="Malha_aberta" />
@@ -128,7 +129,7 @@
 				</div>
 				<div id="div_inputs_fechada">
 					<p:selectOneMenu id="tipo_de_onda_malha_fechada"
-						style="width:130px">
+						value="#{druznic.onda}" style="width:130px">
 						<f:selectItem itemLabel="Selecione" itemValue=""
 							noSelectionOption="false" />
 						<f:selectItems value="#{druznic.ondas}" />
@@ -349,7 +350,6 @@
 		</p:overlayPanel>
 	</div>
 
-
 	<div id="div_grafico">
 
 		<h:form>
@@ -368,5 +368,7 @@
 
 		</h:form>
 	</div>
+
 </h:body>
+
 </html>
