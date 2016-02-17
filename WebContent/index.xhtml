@@ -65,87 +65,92 @@
 
 		<p:overlayPanel id="Panel_Malha_aberta" for="Malha_aberta"
 			hideEffect="fade">
-			<div id="div_labels_aberta">
-				<h:outputLabel value="Tipo de Onda: " />
-				<br />
-				<h:outputLabel value="Amplitude: " />
-				<br />
-				<h:outputLabel value="Amplitude mínima: " />
-				<br />
-				<h:outputLabel value="Período: " />
-				<br />
-				<h:outputLabel value="Período mínimo: " />
-				<br />
-				<h:outputLabel value="Offset: " />
-			</div>
-			<div id="div_inputs_aberta">
-				<p:selectOneMenu id="tipo_de_onda_malha_aberta" value="#{druznic.onda}" style="width:130px">
-					<f:selectItem itemLabel="Selecione" itemValue=""
-						noSelectionOption="false" />
-					<f:selectItems value="#{druznic.ondas}"/>
-				</p:selectOneMenu>
-				<br />
-				<p:inputText style="width:60px" value="#{druznic.amp}" />
-				<br />
-				<p:inputText style="width:60px" value="#{druznic.amp_inf}"/>
-				<br />
-				<p:inputText style="width:60px" value="#{druznic.periodo}"/>
-				<br />
-				<p:inputText style="width:60px" value="#{druznic.periodo_inf}"/>
-				<br />
-				<p:inputText style="width:60px" value="#{druznic.offset}"/>
-				<br />
+			<h:form>
+				<div id="div_labels_aberta">
+					<h:outputLabel value="Tipo de Onda: " />
+					<br />
+					<h:outputLabel value="Amplitude: " />
+					<br />
+					<h:outputLabel value="Amplitude mínima: " />
+					<br />
+					<h:outputLabel value="Período: " />
+					<br />
+					<h:outputLabel value="Período mínimo: " />
+					<br />
+					<h:outputLabel value="Offset: " />
+				</div>
+				<div id="div_inputs_aberta">
+					<p:selectOneMenu id="tipo_de_onda_malha_aberta"
+						value="#{druznic.onda}" style="width:130px">
+						<f:selectItem itemLabel="Selecione" itemValue=""
+							noSelectionOption="false" />
+						<f:selectItems value="#{druznic.ondas}" />
+					</p:selectOneMenu>
+					<br />
+					<p:inputText id="txtAmpAberta" style="width:60px"
+						value="#{druznic.amp}" />
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.amp_inf}" />
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.periodo}" />
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.periodo_inf}" />
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.offset}" />
+					<br />
 
-			</div>
-			<div id="div_ok_aberta">
-				<h:form>
-					<p:commandButton value="OK" id="btn_malha_aberta"
-						style="width:130px" actionListener="#{druznic.configMalhaAberta}" />
-				</h:form>
-			</div>
-
-
+				</div>
+				<div id="div_ok_aberta">
+					<h:form>
+						<p:commandButton value="OK" id="btn_malha_aberta"
+							style="width:130px" actionListener="#{druznic.configMalhaAberta}" />
+					</h:form>
+				</div>
+			</h:form>
 		</p:overlayPanel>
 
 		<p:commandButton value="Malha fechada" id="Malha_fechada" />
 		<p:overlayPanel id="Panel_Malha_fechada" for="Malha_fechada"
 			hideEffect="fade">
-			<div id="div_labels_fechada">
-				<h:outputLabel value="Tipo de Onda: " />
-				<br />
-				<h:outputLabel value="Amplitude: " />
-				<br />
-				<h:outputLabel value="Amplitude mínima: " />
-				<br />
-				<h:outputLabel value="Período: " />
-				<br />
-				<h:outputLabel value="Período mínimo: " />
-				<br />
-				<h:outputLabel value="Offset: " />
-			</div>
-			<div id="div_inputs_fechada">
-				<p:selectOneMenu id="tipo_de_onda_malha_fechada" style="width:130px">
-					<f:selectItem itemLabel="Selecione" itemValue=""
-						noSelectionOption="false" />
-					<f:selectItems value="#{druznic.ondas}"/>
-				</p:selectOneMenu>
-				<br />
-				<p:inputText style="width:60px" />
-				<br />
-				<p:inputText style="width:60px" />
-				<br />
-				<p:inputText style="width:60px" />
-				<br />
-				<p:inputText style="width:60px" />
-				<br />
-				<p:inputText style="width:60px" />
-				<br />
+			<h:form>
+				<div id="div_labels_fechada">
+					<h:outputLabel value="Tipo de Onda: " />
+					<br />
+					<h:outputLabel value="Amplitude: " />
+					<br />
+					<h:outputLabel value="Amplitude mínima: " />
+					<br />
+					<h:outputLabel value="Período: " />
+					<br />
+					<h:outputLabel value="Período mínimo: " />
+					<br />
+					<h:outputLabel value="Offset: " />
+				</div>
+				<div id="div_inputs_fechada">
+					<p:selectOneMenu id="tipo_de_onda_malha_fechada"
+						style="width:130px">
+						<f:selectItem itemLabel="Selecione" itemValue=""
+							noSelectionOption="false" />
+						<f:selectItems value="#{druznic.ondas}" />
+					</p:selectOneMenu>
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.amp}" />
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.amp_inf}" />
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.periodo}" />
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.periodo_inf}" />
+					<br />
+					<p:inputText style="width:60px" value="#{druznic.offset}" />
+					<br />
 
-			</div>
-			<div id="div_ok_fechada">
-				<p:commandButton value="OK" id="btn_malha_fechada"
-					style="width:130px" actionListener="#{druznic.configMalhaFechada}"/>
-			</div>
+				</div>
+				<div id="div_ok_fechada">
+					<p:commandButton value="OK" id="btn_malha_fechada"
+						style="width:130px" actionListener="#{druznic.configMalhaFechada}" />
+				</div>
+			</h:form>
 		</p:overlayPanel>
 
 		<p:commandButton value="PID" id="PID" />

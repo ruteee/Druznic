@@ -32,8 +32,8 @@ public class Druznic {
 
 	private double i = 0;
 	
-	private Map<String, Integer> ondas; 
-	private Integer onda;
+	private Map<String, String> ondas; 
+	private String onda;
 	
 	private String ip = "10.13.99.69";
 	private String porta = "20081";
@@ -43,7 +43,7 @@ public class Druznic {
 
 	private int tipo = 0;
 	
-	private double amp = 15;
+	private double amp;
 	private double amp_sup = 0;
 	private double amp_inf = 0;
 	
@@ -69,19 +69,19 @@ public class Druznic {
 		return graficoNivel;
 	}
 
-	public Map<String, Integer> getOndas() {
+	public Map<String, String> getOndas() {
 		return ondas;
 	}
 
-	public void setOndas(Map<String, Integer> ondas) {
+	public void setOndas(Map<String, String> ondas) {
 		this.ondas = ondas;
 	}
 
-	public Integer getOnda() {
+	public String getOnda() {
 		return onda;
 	}
 
-	public void setOnda(Integer onda) {
+	public void setOnda(String onda) {
 		this.onda = onda;
 	}
 
@@ -123,14 +123,6 @@ public class Druznic {
 
 	public void setEscrita(String escrita) {
 		this.escrita = escrita;
-	}
-
-	public int getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
 	}
 
 	public double getAmp() {
@@ -196,12 +188,12 @@ public class Druznic {
 	@PostConstruct
 	public void init() {
 		criarLineModels();
-		ondas = new HashMap<String, Integer>();
-		ondas.put("Degrau", 0);
-		ondas.put("Quadrada", 1);
-		ondas.put("Senoidal", 2);
-		ondas.put("Dente de Serra", 3);
-		ondas.put("Aleatória", 4);
+		ondas = new HashMap<String, String>();
+		ondas.put("Degrau", "0");
+		ondas.put("Quadrada", "1");
+		ondas.put("Senoidal", "2");
+		ondas.put("Dente de Serra", "3");
+		ondas.put("Aleatória", "4");
 	}
 
 	public void limparGrafico() {
@@ -275,7 +267,7 @@ public class Druznic {
 		graficoControle.addSeries(filas.get(T_ONDA));
 		graficoControle.addSeries(filas.get(T_SAT));
 		
-		String config = tipo + SEP
+		String config = onda + SEP
 						+ amp + SEP
 						+ amp_sup + SEP
 						+ amp_inf + SEP
@@ -284,6 +276,7 @@ public class Druznic {
 						+ periodo_inf + SEP
 						+ offset + SEP + 0;
 		
+		System.out.println(config);
 		comunicador.enviarConfiguracoes(config);
 	}
 
@@ -320,16 +313,15 @@ public class Druznic {
 		graficoControle.addSeries(filas.get(ERRO));
 		graficoControle.addSeries(filas.get(ERRO_SAT));
 		
-		String config = tipo + SEP
-				+ amp + SEP
-				+ amp_sup + SEP
-				+ amp_inf + SEP
-				+ periodo + SEP
-				+ periodo_sup + SEP
-				+ periodo_inf + SEP
-				+ offset + SEP + 1;
-
+		String config = this.onda + SEP
+				+ this.amp + SEP
+				+ this.amp_sup + SEP
+				+ this.amp_inf + SEP
+				+ this.periodo + SEP
+				+ this.periodo_sup + SEP
+				+ this.periodo_inf + SEP
+				+ this.offset + SEP + 1;
+		System.out.println(config);
 		comunicador.enviarConfiguracoes(config);
 	}
 }
-
