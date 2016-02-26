@@ -14,12 +14,15 @@ public class Receptor extends Thread {
 	private boolean esperando = true;
 	private Map<Integer, LineChartSeries> filas;
 
+	private Double tempo;
+	
 	private boolean flag = false;
 	
-	public Receptor(Socket sock, Map<Integer, LineChartSeries> filas) {
+	public Receptor(Socket sock, Map<Integer, LineChartSeries> filas, Double tempo) {
 		this.sock = sock;
 		this.setName("ThreadRecepção");
 		this.filas = filas;
+		this.tempo = tempo;
 	}
 
 	@Override
@@ -42,8 +45,8 @@ public class Receptor extends Thread {
 				System.out.println("XML:" + xml);
 				
 				this.flag = true;
-				
 				String lista[] = xml.split("[|]");
+				this.tempo = Double.parseDouble(lista[1]);
 				for (String string : lista) {
 					System.out.println(string);
 				}

@@ -15,9 +15,7 @@
 
 	<div id="div_login">
 		<h:form>
-			<p:commandLink id="Login">
-				<h:outputText value="10.13.99.69" />
-			</p:commandLink>
+			<p:commandButton id="Login" value="#{druznic.conectado}" />
 
 			<p:overlayPanel id="Login_Panel" for="Login" hideEffect="fade">
 				<div id="div_label_login">
@@ -25,35 +23,62 @@
 					<br />
 					<h:outputText value="Porta: " />
 					<br />
-					<h:outputText value="Leitura 1: " />
-					<br />
-					<h:outputText value="Leitura 2: " />
-					<br />
 					<h:outputText value="Escrita: " />
+					<br />
+					<h:outputText value="Leitura: " />
 				</div>
 
 				<div id="div_input_login">
-
 					<p:inputText id="IP_text" value="#{druznic.ip}"
 						style="width: 50; margin-bottom:3px" />
 					<br />
 					<p:inputText id="Porta_text" value="#{druznic.porta}"
 						style="width: 50; margin-bottom:3px" />
 					<br />
+					<p:selectOneMenu id="Escrita_Menu" value="#{druznic.escrita}"
+						style="width: 50; margin-bottom:3px">
+						<f:selectItem itemLabel="Selecione" itemValue=""
+							noSelectionOption="true"></f:selectItem>
+						<f:selectItem itemLabel="Canal 0" itemValue="0"></f:selectItem>
+						<f:selectItem itemLabel="Canal 1" itemValue="1"></f:selectItem>
+						<f:selectItem itemLabel="Canal 2" itemValue="2"></f:selectItem>
+						<f:selectItem itemLabel="Canal 3" itemValue="3"></f:selectItem>
+						<f:selectItem itemLabel="Canal 4" itemValue="4"></f:selectItem>
+						<f:selectItem itemLabel="Canal 5" itemValue="5"></f:selectItem>
+						<f:selectItem itemLabel="Canal 6" itemValue="6"></f:selectItem>
+						<f:selectItem itemLabel="Canal 7" itemValue="7"></f:selectItem>
+					</p:selectOneMenu>
+					<br />
 					<p:inputText id="Leitura1_text" value="#{druznic.leituraUm}"
 						style="width: 50; margin-bottom:3px" />
 					<br />
-					<p:inputText id="Leitura2_text" value="#{druznic.leituraDois}"
-						style="width: 50; margin-bottom:3px" />
+					<p:selectBooleanCheckbox value="#{druznic.canal0}">
+						
+					</p:selectBooleanCheckbox>
+					<h:outputText value="Canal 0" />
+					<p:selectBooleanCheckbox value="#{druznic.canal4}" />
+					<h:outputText value="Canal 4" />
 					<br />
-					<p:inputText id="Escrita_text" value="#{druznic.escrita}"
-						style="width: 50; margin-bottom:3px" />
+					<p:selectBooleanCheckbox value="#{druznic.canal1}" />
+					<h:outputText value="Canal 1" />
+					<p:selectBooleanCheckbox value="#{druznic.canal5}" />
+					<h:outputText value="Canal 5" />
+					<br />
+					<p:selectBooleanCheckbox value="#{druznic.canal2}" />
+					<h:outputText value="Canal 2" />
+					<p:selectBooleanCheckbox value="#{druznic.canal6}" />
+					<h:outputText value="Canal 6" />
+					<br />
+					<p:selectBooleanCheckbox value="#{druznic.canal3}" />
+					<h:outputText value="Canal 3" />
+					<p:selectBooleanCheckbox value="#{druznic.canal7}" />
+					<h:outputText value="Canal 7" />
 					<br />
 				</div>
 
 				<div id="ok_login">
 					<p:commandButton value="OK" style="width:1_u30px"
-						action="#{druznic.conectar}" />
+						action="#{druznic.conectar}"/>
 				</div>
 
 			</p:overlayPanel>
@@ -65,7 +90,7 @@
 		<p:commandButton value="Malha aberta" id="Malha_aberta" />
 
 		<p:overlayPanel id="Panel_Malha_aberta" for="Malha_aberta"
-			hideEffect="fade">
+			hideEffect="fade" >
 			<h:form>
 				<div id="div_labels_aberta">
 					<h:outputLabel value="Tipo de Onda: " />
@@ -79,7 +104,12 @@
 					<h:outputLabel value="Período mínimo: " />
 					<br />
 					<h:outputLabel value="Offset: " />
+					<br />
+					<h:outputLabel value="Nível 1: " />
+					<br />
+					<h:outputLabel value="Nível 2: " />
 				</div>
+
 				<div id="div_inputs_aberta">
 					<p:selectOneMenu id="tipo_de_onda_malha_aberta"
 						value="#{druznic.onda}" style="width:130px">
@@ -99,7 +129,23 @@
 					<br />
 					<p:inputText style="width:60px" value="#{druznic.offset}" />
 					<br />
-
+					
+					<p:selectOneMenu id="nivelUm" value="#{druznic.leituraUm}"
+						style="width: 50; margin-bottom:3px">
+						<f:selectItem itemLabel="Selecione" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{druznic.canais}" />
+					</p:selectOneMenu>
+					
+					<br />
+					
+					<p:selectOneMenu value="#{druznic.leituraDois}"
+						style="width: 50; margin-bottom:3px">
+						<f:selectItem itemLabel="Selecione" itemValue=""
+							noSelectionOption="true"></f:selectItem>
+						<f:selectItems value="#{druznic.canais}" />
+					</p:selectOneMenu>
+					
 				</div>
 				<div id="div_ok_aberta">
 					<h:form>
@@ -348,12 +394,15 @@
 				<p:commandButton value="OK" id="btn_Seguidor" style="width:130px" />
 			</div>
 		</p:overlayPanel>
+		
+		<p:commandButton value="Desligar bomba" id="TurnOff" actionListener="#{druznic.desligarBomba}" />
 	</div>
 
 	<div id="div_grafico">
 
 		<h:form>
-			<p:poll interval="1" update="form_graficos" />
+			<p:poll interval="1" stop="#{druznic.tempoReal}"
+				update="form_graficos" />
 		</h:form>
 
 		<h:form id="form_graficos">
@@ -362,13 +411,17 @@
 			<h:outputLabel value="MP: " />
 			<h:outputLabel value="TR: " />
 			<h:outputLabel value="TS: " />
-			<h:outputLabel value="TP: " />
+			<h:outputLabel value="#{druznic.horario}" />
+			<h:outputLabel value="#{druznic.nivelUm}" />
+			<h:outputLabel value="#{druznic.nivelDois}" />
+
 			<p:chart type="line" model="#{druznic.graficoNivel}"
 				style="height:300px;" responsive="true" />
-
 		</h:form>
 	</div>
 
 </h:body>
+
+
 
 </html>

@@ -13,7 +13,7 @@ public class Comunicador {
 
 	private String ip;
 
-	public Comunicador(String IP, Map<Integer, LineChartSeries> filas) {
+	public Comunicador(String IP, Map<Integer, LineChartSeries> filas, Double tempo) {
 		this.ip = IP;
 		try {
 			// Connect to the server at the given address on port 8080
@@ -21,7 +21,7 @@ public class Comunicador {
 				this.ip = "localhost";
 			Socket sock = new Socket(this.ip, 54321);
 			sock.setTcpNoDelay(true);
-			this.receptor = new Receptor(sock, filas);
+			this.receptor = new Receptor(sock, filas, tempo);
 			receptor.start();
 			this.emissor = new Emissor(sock);
 			this.conectado = true;

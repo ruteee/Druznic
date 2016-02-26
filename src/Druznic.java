@@ -6,12 +6,8 @@ import javax.annotation.PostConstruct;
 
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.CategoryAxis;
-import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
-
-import com.sun.org.apache.bcel.internal.generic.LNEG;
 
 import javax.faces.bean.ManagedBean;
 
@@ -32,6 +28,20 @@ public class Druznic {
 
 	private double i = 0;
 	
+	private boolean canal0;
+	private boolean canal1;
+	private boolean canal2;
+	private boolean canal3;
+	private boolean canal4;
+	private boolean canal5;
+	private boolean canal6;
+	private boolean canal7;
+	
+	private Double tempo;
+	
+	private String nivelUm;
+	private String nivelDois;
+	
 	private Map<String, String> ondas; 
 	private String onda;
 	
@@ -41,7 +51,7 @@ public class Druznic {
 	private String leituraDois = "1";
 	private String escrita = "0";
 
-	private int tipo = 0;
+	private boolean tempoReal;
 	
 	private double amp;
 	private double amp_sup = 0;
@@ -62,9 +72,142 @@ public class Druznic {
 	private LineChartModel graficoControle;
 
 	private Map<Integer, LineChartSeries> filas = new HashMap<Integer, LineChartSeries>();
-
+	
+	private Map<String, String> canais;
+	
 	private Comunicador comunicador;
 
+	public String getNivelUm() {
+		nivelUm = "Nível 1: ";
+		if (filas.get(NIVEL_UM) != null )
+			nivelUm += filas.get(NIVEL_UM).getData().get(tempo).toString();
+		return nivelUm;
+	}
+
+	public void setNivelUm(String nivelUm) {
+		this.nivelUm = nivelUm;
+	}
+
+	public String getNivelDois() {
+		if (filas.get(NIVEL_DOIS) != null)
+			nivelDois = "Nível 2: " + filas.get(NIVEL_DOIS).getData().get(tempo).toString();
+		else
+			nivelDois = "Nível 2: ";
+		return nivelDois;
+	}
+
+	public void setNivelDois(String nivelDois) {
+		this.nivelDois = nivelDois;
+	}
+
+	public Map<String, String> getCanais() {
+		canais = new HashMap<String, String>();
+		if (canal0)
+			canais.put("Canal 0", "0");
+		if (canal1)
+			canais.put("Canal 1", "1");
+		if (canal2)
+			canais.put("Canal 2", "2");
+		if (canal3)
+			canais.put("Canal 3", "3");
+		if (canal4)
+			canais.put("Canal 4", "4");
+		if (canal5)
+			canais.put("Canal 5", "5");
+		if (canal6)
+			canais.put("Canal 6", "6");
+		if (canal7)
+			canais.put("Canal 7", "7");
+		return canais;
+	}
+
+	public void setCanais(Map<String, String> canais) {
+		this.canais = canais;
+	}
+
+	public boolean isCanal0() {
+		return canal0;
+	}
+
+	public void setCanal0(boolean canal0) {
+		this.canal0 = canal0;
+	}
+
+	public boolean isCanal1() {
+		return canal1;
+	}
+
+	public void setCanal1(boolean canal1) {
+		this.canal1 = canal1;
+	}
+
+	public boolean isCanal2() {
+		return canal2;
+	}
+
+	public void setCanal2(boolean canal2) {
+		this.canal2 = canal2;
+	}
+
+	public boolean isCanal3() {
+		return canal3;
+	}
+
+	public void setCanal3(boolean canal3) {
+		this.canal3 = canal3;
+	}
+
+	public boolean isCanal4() {
+		return canal4;
+	}
+
+	public void setCanal4(boolean canal4) {
+		this.canal4 = canal4;
+	}
+
+	public boolean isCanal5() {
+		return canal5;
+	}
+
+	public void setCanal5(boolean canal5) {
+		this.canal5 = canal5;
+	}
+
+	public boolean isCanal6() {
+		return canal6;
+	}
+
+	public void setCanal6(boolean canal6) {
+		this.canal6 = canal6;
+	}
+
+	public boolean isCanal7() {
+		return canal7;
+	}
+
+	public void setCanal7(boolean canal7) {
+		this.canal7 = canal7;
+	}
+
+	public String getConectado() {
+		if (comunicador !=  null)
+			return comunicador.isConectado() ? "Conectado" : "Desconectado";
+		else 
+			return "Desconectado";
+	}
+	
+	public void setConectado(String conectado) {
+		System.out.println(conectado);
+	}
+
+	public boolean isTempoReal() {
+		return tempoReal;
+	}
+
+	public void setTempoReal(boolean tempoReal) {
+		this.tempoReal = tempoReal;
+	}
+	
 	public LineChartModel getGraficoNivel() {
 		return graficoNivel;
 	}
@@ -224,7 +367,7 @@ public class Druznic {
 
 	public void conectar(){
 		System.out.println("Tentar Conectar");
-		comunicador = new Comunicador("localhost", filas);
+		comunicador = new Comunicador("localhost", filas, tempo);
 		if (comunicador.isConectado())
 			System.out.println("Conectado");
 		else
@@ -234,6 +377,51 @@ public class Druznic {
 						+ leituraUm + " " 
 						+ leituraDois + " "
 						+ escrita;
+		comunicador.enviarConfiguracoes(config);
+	}
+	
+	public void desligarBomba() {
+		System.out.println("Malha Aberta");
+
+		limparGrafico();
+		filas.clear();
+
+		filas.put(NIVEL_UM, (new LineChartSeries()));
+		filas.get(NIVEL_UM).setLabel("Nível 1");
+		filas.get(NIVEL_UM).set(0, 0);
+		filas.get(NIVEL_UM).setShowMarker(false);
+
+		filas.put(NIVEL_DOIS, (new LineChartSeries()));
+		filas.get(NIVEL_DOIS).setLabel("Nível 2");
+		filas.get(NIVEL_DOIS).set(0, 0);
+		filas.get(NIVEL_DOIS).setShowMarker(false);
+
+		filas.put(T_ONDA, (new LineChartSeries()));
+		filas.get(T_ONDA).setLabel("Sinal Gerado");
+		filas.get(T_ONDA).set(0, 0);
+		filas.get(T_ONDA).setShowMarker(false);
+
+		filas.put(T_SAT, (new LineChartSeries()));
+		filas.get(T_SAT).setLabel("Sinal Saturado");
+		filas.get(T_SAT).set(0, 0);
+		filas.get(T_SAT).setShowMarker(false);
+
+		graficoNivel.addSeries(filas.get(NIVEL_UM));
+		graficoNivel.addSeries(filas.get(NIVEL_DOIS));
+
+		graficoControle.addSeries(filas.get(T_ONDA));
+		graficoControle.addSeries(filas.get(T_SAT));
+		
+		String config = 0 + SEP
+						+ 0 + SEP
+						+ 0 + SEP
+						+ 0 + SEP
+						+ 0 + SEP
+						+ 0 + SEP
+						+ 0 + SEP
+						+ 0 + SEP + 0;
+		
+		System.out.println(config);
 		comunicador.enviarConfiguracoes(config);
 	}
 	
@@ -271,10 +459,10 @@ public class Druznic {
 		
 		String config = onda + SEP
 						+ amp + SEP
-						+ amp_sup + SEP
+						+ amp + SEP
 						+ amp_inf + SEP
 						+ periodo + SEP
-						+ periodo_sup + SEP
+						+ periodo + SEP
 						+ periodo_inf + SEP
 						+ offset + SEP + 0;
 		
@@ -283,7 +471,7 @@ public class Druznic {
 	}
 
 	public void configMalhaFechada() {
-		System.out.println("Malha Fechada");
+		System.out.println("Malha Fechada, " + TEMPO);
 
 		limparGrafico();
 		filas.clear();
@@ -317,10 +505,10 @@ public class Druznic {
 		
 		String config = this.onda + SEP
 				+ this.amp + SEP
-				+ this.amp_sup + SEP
+				+ this.amp + SEP
 				+ this.amp_inf + SEP
 				+ this.periodo + SEP
-				+ this.periodo_sup + SEP
+				+ this.periodo + SEP
 				+ this.periodo_inf + SEP
 				+ this.offset + SEP + 1;
 		System.out.println(config);
